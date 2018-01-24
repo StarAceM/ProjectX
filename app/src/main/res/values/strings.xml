@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">ProjectX</string>
+    <string name="app_name">Studio Ghibli</string>
+    <string name="splash_title">Welcome to The World of Studio Ghibli</string>
+    <string name="splash_button_text">Enter</string>
 </resources>
