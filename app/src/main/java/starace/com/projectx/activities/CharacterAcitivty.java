@@ -1,4 +1,4 @@
-package starace.com.projectx;
+package starace.com.projectx.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
