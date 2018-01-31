@@ -1,19 +1,27 @@
 package starace.com.projectx.retrofit;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import starace.com.projectx.models.GhibliCharacter;
+import starace.com.projectx.models.SearchResult;
 
 /**
  * Created by mstarace on 1/29/18.
  */
 
 public class RetrofitHelper {
+
+    private static final String key = "AIzaSyAOGEfwB-lbS2x695gKpWNrTWyAEozf1go";
+    private static final String cx = "006196028964560055520:_4n9klgynqm";
 
     public static void getRandomCharacter(RetrofitCallBack callBack) {
         getCharacterList(callBack);
@@ -41,6 +49,36 @@ public class RetrofitHelper {
                 //todo handle error
             }
         });
+    }
+
+    public static void getSearchResults(String searchQuery) {
+        SearchClient searchClient = RetrofitSearchClient.getClient().create(SearchClient.class);
+
+        Call<SearchResult>call = searchClient.customSearch(getQueryMap(searchQuery));
+        call.enqueue(new Callback<SearchResult>() {
+            @Override
+            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
+                SearchResult searchResult = response.body();
+
+            }
+
+            @Override
+            public void onFailure(Call<SearchResult> call, Throwable t) {
+                Log.d("THIS IS AN ERROR", t.toString());
+            }
+        });
+    }
+
+    private static Map<String, String> getQueryMap(String searchQuery) {
+        Map<String, String> queryMap = new HashMap<>();
+        queryMap.put("key", key);
+        queryMap.put("cx", cx);
+        queryMap.put("q", searchQuery);
+        queryMap.put("searchType", "image");
+
+
+
+        return queryMap;
     }
 
     //gets all the characters from a film

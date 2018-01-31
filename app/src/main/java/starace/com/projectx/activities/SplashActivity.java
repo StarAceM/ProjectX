@@ -11,7 +11,7 @@ import starace.com.projectx.R;
 import starace.com.projectx.models.GhibliCharacter;
 import starace.com.projectx.retrofit.RetrofitHelper;
 
-import static starace.com.projectx.retrofit.RetrofitHelper.getRandomCharacter;
+import static starace.com.projectx.retrofit.RetrofitHelper.getSearchResults;
 
 
 public class SplashActivity extends AppCompatActivity implements RetrofitHelper.RetrofitCallBack{
@@ -23,7 +23,8 @@ public class SplashActivity extends AppCompatActivity implements RetrofitHelper.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         if(ConnectionHelper.checkForConnection(getApplicationContext())) {
-            getRandomCharacter(this);
+            //getRandomCharacter(this);
+            getSearchResults("cat bus");
         } else {
             //todo handle non-connected device
         }
