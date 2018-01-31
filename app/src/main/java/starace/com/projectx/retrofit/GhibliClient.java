@@ -15,4 +15,6 @@ public interface GhibliClient {
     @GET("people/")
     Call<List<GhibliCharacter>> getCharacters();
 
+
+
 }
